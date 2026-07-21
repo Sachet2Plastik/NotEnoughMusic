@@ -1,31 +1,31 @@
 {
 	"schemaVersion": 1,
-	"id": "moremusicdiscs",
+	"id": "notenoughmusic",
 	"version": "${version}",
-	"name": "More Music Discs",
-	"description": "This mod add more music discs to collect and listen to",
+	"name": "Not Enough Music",
+	"description": "This mod add more music discs to collect and listen to and more way to obtain them making the collecting process more entertaining",
 	"authors": [
 		"Sachet2Plastik"
 	],
 	"contact": {
 		"homepage": "",
-		"sources": "https://github.com/Sachet2Plastik/MoreMusicDiscs"
+		"sources": "https://github.com/Sachet2Plastik/NotEnoughMusic"
 	},
 	"license": "MIT",
-	"icon": "assets/moremusicdiscs/icon.png",
+	"icon": "assets/notenoughmusic/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"sachet2plastik.moremusicdiscs.MoreMusicDiscs"
+			"sachet2plastik.notenoughmusic.NotEnoughMusic"
 		],
 		"client": [
-			"sachet2plastik.moremusicdiscs.MoreMusicDiscsClient"
+			"sachet2plastik.notenoughmusic.NotEnoughMusicClient"
 		]
 	},
 	"mixins": [
-		"moremusicdiscs.mixins.json",
+		"notenoughmusic.mixins.json",
 		{
-			"config": "moremusicdiscs.client.mixins.json",
+			"config": "notenoughmusic.client.mixins.json",
 			"environment": "client"
 		}
 	],

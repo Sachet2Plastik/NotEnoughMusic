@@ -1,0 +1,52 @@
+{
+  "nem_test": {
+    "sounds": [
+      {
+        "name": "notenoughmusic:musics/test/multimilionaire",
+        "stream": true
+      }
+    ]
+  },
+  "nem_tenm_undead": {
+    "sounds": [
+      {
+        "name": "notenoughmusic:musics/t_en_m/undead",
+        "stream": true
+      }
+    ]
+  },
+  "nem_tenm_frosted": {
+    "sounds": [
+      {
+        "name": "notenoughmusic:musics/t_en_m/frosted",
+        "stream": true
+      }
+    ]
+  },
+  "nem_tenm_soulless": {
+    "sounds": [
+      {
+        "name": "notenoughmusic:musics/t_en_m/soulless",
+        "stream": true
+      }
+    ]
+  },
+
+  "nem_laudividni_nightfall": {
+    "sounds": [
+      {
+        "name": "notenoughmusic:musics/laudividni/nightfall",
+        "stream": true
+      }
+    ]
+  },
+
+  "nem_stereonyx_dragonfight": {
+    "sounds": [
+      {
+        "name": "notenoughmusic:musics/stereonyx/dragonfight",
+        "stream": true
+      }
+    ]
+  }
+}
