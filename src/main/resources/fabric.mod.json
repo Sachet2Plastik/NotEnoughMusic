@@ -2,16 +2,16 @@
 	"schemaVersion": 1,
 	"id": "moremusicdiscs",
 	"version": "${version}",
-	"name": "MoreMusicDiscs",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "More Music Discs",
+	"description": "This mod add more music discs to collect and listen to",
 	"authors": [
-		"Me!"
+		"Sachet2Plastik"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "",
+		"sources": "https://github.com/Sachet2Plastik/MoreMusicDiscs"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/moremusicdiscs/icon.png",
 	"environment": "*",
 	"entrypoints": {
@@ -19,7 +19,7 @@
 			"sachet2plastik.moremusicdiscs.MoreMusicDiscs"
 		],
 		"client": [
-			"sachet2plastik.moremusicdiscs.client.MoreMusicDiscsClient"
+			"sachet2plastik.moremusicdiscs.MoreMusicDiscsClient"
 		]
 	},
 	"mixins": [
@@ -31,8 +31,8 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.19.3",
-		"minecraft": "~1.20.1",
-		"java": ">=17",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
 		"fabric-api": "*"
 	}
 }

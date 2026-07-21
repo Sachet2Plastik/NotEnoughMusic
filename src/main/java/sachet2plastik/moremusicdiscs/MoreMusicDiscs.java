@@ -2,10 +2,10 @@ package sachet2plastik.moremusicdiscs;
 
 import net.fabricmc.api.ModInitializer;
 
-import net.minecraft.resources.ResourceLocation;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import sachet2plastik.moremusicdiscs.item.ModItems;
+import sachet2plastik.moremusicdiscs.sound.ModSound;
 
 public class MoreMusicDiscs implements ModInitializer {
 	public static final String MOD_ID = "moremusicdiscs";
@@ -21,10 +21,8 @@ public class MoreMusicDiscs implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		LOGGER.info("Hello Fabric world!");
-	}
-
-	public static ResourceLocation id(String path) {
-		return new ResourceLocation(MOD_ID, path);
+		LOGGER.info("Hello From More Music Disc!");
+		ModItems.registerModItems();
+		ModSound.registerSounds();
 	}
 }
