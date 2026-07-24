@@ -21,15 +21,31 @@ More artists may be added in future updates.
 
 ## List of Tracks
 
-| Track Name   | Artist                                                  | Source                                                  |
-|--------------|---------------------------------------------------------|---------------------------------------------------------|
-| Undead       | @[TenM](https://www.youtube.com/@TenM)                  | [YouTube](https://www.youtube.com/watch?v=I_F94ex5qoU)  |
-| Frosted      | @[TenM](https://www.youtube.com/@TenM)                  | [YouTube](https://www.youtube.com/watch?v=o8efJdJdbos)  |
-| Soulless     | @[TenM](https://www.youtube.com/@TenM)                  | [YouTube](https://www.youtube.com/watch?v=Nxzkt1fhbNk)  |
-|              |                                                         |                                                         |
-| Nightfall    | @[Laudividni](https://www.youtube.com/@LaudividniMusic) | [YouTube](https://www.youtube.com/watch?v=SrNlvy3vrQ8)  |                                          |
-|              |                                                         |                                                         |
-| Dragon Fight | @[Stereonyx](https://www.youtube.com/@Stereonyx)        | [Youtube](https://www.youtube.com/watch?v=2ZmbXM8OAXM)  |
+| Track Name       | Artist(s)                                                                                          | Source                                                       |
+|------------------|----------------------------------------------------------------------------------------------------|--------------------------------------------------------------|
+| Undead           | @[TenM](https://www.youtube.com/@TenM)                                                             | [YouTube](https://www.youtube.com/watch?v=I_F94ex5qoU)       |
+| Frosted          | @[TenM](https://www.youtube.com/@TenM)                                                             | [YouTube](https://www.youtube.com/watch?v=o8efJdJdbos)       |
+| Soulless         | @[TenM](https://www.youtube.com/@TenM)                                                             | [YouTube](https://www.youtube.com/watch?v=Nxzkt1fhbNk)       |
+| Voyage           | @[TenM](https://www.youtube.com/@TenM) ft. @[Laudividni](https://www.youtube.com/@LaudividniMusic) | [YouTube](https://youtu.be/FV0bC7wgVr8?si=vN7m4fNwQqlSjXre)  |
+| Breeze           | @[TenM](https://www.youtube.com/@TenM)                                                             | [YouTube](https://youtu.be/d2SplfbweE8?si=6Tmn_b75dC5vTg2g)  |
+| Mineshaft        | @[TenM](https://www.youtube.com/@TenM)                                                             | [YouTube](https://youtu.be/UnCYHw8fsYU?si=lPTg04x8GJ7KEwUz)  |
+| Below            | @[TenM](https://www.youtube.com/@TenM)                                                             | [YouTube](https://youtu.be/XJFPH10L1lc?si=k9TuiEJBVQLvvv0p)  |
+| No Escape        | @[TenM](https://www.youtube.com/@TenM) ft. @[Laudividni](https://www.youtube.com/@LaudividniMusic) | [YouTube](https://youtu.be/g5DGJINVYxc?si=sKz-tjf3Yc-LpB1L)  |
+| Gilded           | @[TenM](https://www.youtube.com/@TenM)                                                             | [YouTube](https://youtu.be/TyTNzg_nW4o?si=YEIcmWY0o53mrdlZ)  |
+| Tundra           | @[TenM](https://www.youtube.com/@TenM)                                                             | [YouTube](https://youtu.be/-q-d7Npg-hY?si=fhk9rfVuP6BCU2td)  |
+| Shulker          | @[TenM](https://www.youtube.com/@TenM)                                                             | [YouTube](https://youtu.be/nTUEkoQq0mw?si=p-KxEc_0wLeki25Z)  |
+| Pumpkin          | @[TenM](https://www.youtube.com/@TenM)                                                             | [YouTube](https://youtu.be/6kdj6wy1mzo?si=1UYWfdXxJFP2i9aI)  |
+| Guardian         | @[TenM](https://www.youtube.com/@TenM)                                                             | [YouTube](https://youtu.be/7UHZ3lRCLks?si=j8-fHNlbo1kDp88c)  |
+| 5/10k Special    | @[TenM](https://www.youtube.com/@TenM)                                                             | [YouTube](https://youtu.be/SOTkNS54fYE?si=3ictYlVquIOMZQ4Q)  |
+| The Ender Dragon | @[TenM](https://www.youtube.com/@TenM)                                                             | [YouTube](https://youtu.be/Y8LDHGgN7q0?si=lQh0iYGW1SmSY4TI)  |
+| Raiders          | @[TenM](https://www.youtube.com/@TenM)                                                             | [YouTube](https://youtu.be/1JvcBo9bEAs?si=f8crYQPtoJm1b7Ja)  |
+| The Wither       | @[TenM](https://www.youtube.com/@TenM)                                                             | [YouTube](https://youtu.be/E_bClOgwALY?si=yzGRpJN-GMtpOq4h)  |
+| Thunder Storm    | @[TenM](https://www.youtube.com/@TenM)                                                             | [YouTube](https://youtu.be/ErdGLNNcc-0?si=7cQ-qenXuFV7_0lJ)  |
+| 1k Special       | @[TenM](https://www.youtube.com/@TenM)                                                             | [YouTube](https://youtu.be/R8lm_xkyOwQ?si=h1xZ4tZBEzxottxG)  |
+|                  |                                                                                                    |                                                              |
+| Nightfall        | @[Laudividni](https://www.youtube.com/@LaudividniMusic)                                            | [YouTube](https://www.youtube.com/watch?v=SrNlvy3vrQ8)       |                                          |
+|                  |                                                                                                    |                                                              |
+| Dragon Fight     | @[Stereonyx](https://www.youtube.com/@Stereonyx)                                                   | [YouTube](https://www.youtube.com/watch?v=2ZmbXM8OAXM)       |
 
 
 ## License
@@ -46,3 +62,12 @@ The **source code** of this project is licensed under the **MIT License**.
 
 > [!WARNING]
 > Do **not** assume that the music assets are free to redistribute, modify, or reuse outside of this project simply because the source code is MIT licensed.
+
+# CONTRIBUTIONS
+
+Any contributions are welcome given a proper PR or Issue detailing the changes.
+
+To work on the project, you can download the repo and setup you environment by following the fabric documentation.
+
+For adding discs you just need to add an entry in the [definitions.json](src/main/resources/data/notenoughmusic/definitions.json) and run the [AutoGen.py](AutoGen.py) script.
+I think that the correct directories need to be created beforehand. And make sure to add a new Artist entry too if it comes from a new artist 

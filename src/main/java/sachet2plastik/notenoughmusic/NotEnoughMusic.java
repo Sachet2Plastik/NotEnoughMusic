@@ -9,27 +9,13 @@ import sachet2plastik.notenoughmusic.sound.ModSound;
 
 public class NotEnoughMusic implements ModInitializer {
 	public static final String MOD_ID = "notenoughmusic";
+	public static final String MOD_NAME = "Not Enough Music";
+	public static final String MOD_FORMAT_NAME = "nem";
 
 	// This logger is used to write text to the console and the log file.
 	// It is considered best practice to use your mod id as the logger's name.
 	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-
-	public enum Artists {
-		T_EN_M("t_en_m/"),
-		LAUDIVIDNI("laudividni/"),
-		STEREONYX("stereonyx/");
-
-		private final String Prefix;
-
-		Artists(String prefix) {
-			Prefix = prefix;
-		}
-
-		public String prefix() {
-			return Prefix;
-		}
-	}
 
 	@Override
 	public void onInitialize() {
@@ -38,7 +24,8 @@ public class NotEnoughMusic implements ModInitializer {
 		// Proceed with mild caution.
 
 		LOGGER.info("Hello From Not Enough Music!");
-		ModItems.registerModItems();
+		DiscsRegistry.registerDiscFromConfig();
 		ModSound.registerSounds();
+		ModItems.registerModItems();
 	}
 }
