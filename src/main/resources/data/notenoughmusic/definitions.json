@@ -184,9 +184,9 @@
     "artist": "tenm",
     "maxCount": 1,
     "rarity": "rare",
-    "description": "desc",
-    "comparatorOutput": 1,
-    "lengthInSeconds": 120.0,
+    "description": "T_en_M - 1k Special",
+    "comparatorOutput": 15,
+    "lengthInSeconds": 132.0,
     "itemName": "Music Disc"
   },
   {

@@ -9,6 +9,10 @@ ARTISTS = {
 
 MOD_ID = "notenoughmusic"
 NEM = "nem_"
+ITEM_DISCS_SUFFIX = "_music_disc"
+JSON_SUFFIX = ".json"
+
+DEFINITIONS = "src/main/resources/data/notenoughmusic/definitions.json"
 
 RESOURCES_DIR = "src/main/resources/"
 DATA_DIR = RESOURCES_DIR + "data/notenoughmusic/"
@@ -20,6 +24,15 @@ MODELS_ITEM_DISCS_DIR = ASSETS_DIR + "models/item/discs/"
 SOUNDS_MUSICS_DIR = ASSETS_DIR + "sounds/musics/"
 TEXTURES_ITEM_DISCS_DIR = ASSETS_DIR + "textures/item/discs/"
 
+def getArtistName(data):
+    return ARTISTS[data["artist"]]["name"]
+
+def getArtistPrefix(data):
+    return ARTISTS[data["artist"]]["prefix"]
+
+def getArtistRaw(data):
+    return ARTISTS[data["artist"]]["raw"]
+
 JUKEBOX_SONG = {
     "comparator_output": 15,
     "description": {
@@ -29,16 +42,19 @@ JUKEBOX_SONG = {
     "sound_event": "notenoughmusic:nem_tenm_voyage"
 }
 
-# directly generate the file
+# directly generate a file
 def GenJukeboxSong(data):
     jukebox_song = dict(JUKEBOX_SONG)
 
     jukebox_song["comparator_output"] = data["comparatorOutput"]
     jukebox_song["description"]["translate"] = data["description"]
     jukebox_song["length_in_seconds"] = data["lengthInSeconds"]
-    jukebox_song["sound_event"] = MOD_ID + ":" + NEM + ARTISTS[data["artist"]]["name"] + "_" + data["name"]
+    jukebox_song["sound_event"] = MOD_ID + ":" + NEM + getArtistName(data) + "_" + data["name"]
 
-    print(json.dumps(jukebox_song, indent=4))
+    # print(json.dumps(jukebox_song, indent=4))
+
+    with open(JUKEBOX_DIR + getArtistPrefix(data) + data["name"] + JSON_SUFFIX, "w") as file:
+        json.dump(jukebox_song, file, indent=2)
 
 
 
@@ -55,16 +71,16 @@ SOUNDS = {
 
 # DO NOT directly generate the file
 def GenMainSounds(data):
-    SOUNDS[NEM + data["name"]] = {
+    SOUNDS[NEM + getArtistName(data) + "_" + data["name"]] = {
         "sounds": [
             {
-                "name": MOD_ID + ":musics/" + ARTISTS[data["artist"]]["prefix"] + data["name"],
+                "name": MOD_ID + ":musics/" + getArtistPrefix(data) + data["name"],
                 "stream": True
             }
         ]
     }
 
-    print(json.dumps(SOUNDS, indent=4))
+    # print(json.dumps(SOUNDS, indent=4))
 
 
 LANG = {
@@ -72,11 +88,11 @@ LANG = {
 }
 
 # DO NOT directly generate the file
-def GenLang(data, lang: str = "en_us.json"):
+def GenLang(data):
     # lang parameter if used as target file
-    LANG["item." + MOD_ID + ".discs." + ARTISTS[data["artist"]]["raw"] + "." + NEM + data["name"] + "_music_disc"] = data["itemName"]
+    LANG["item." + MOD_ID + ".discs." + getArtistRaw(data) + "." + NEM + getArtistName(data) + "_" + data["name"] + ITEM_DISCS_SUFFIX] = data["itemName"]
 
-    print(json.dumps(LANG, indent=4))
+    # print(json.dumps(LANG, indent=4))
 
 
 MODELS = {
@@ -86,19 +102,30 @@ MODELS = {
     }
 }
 
-# directly generate the file
+# directly generate a file
 def GenModel(data):
     model = dict(MODELS)
 
-    model["textures"]["layer0"] = MOD_ID + ":item/discs/" + ARTISTS[data["artist"]]["prefix"] + data["name"]
+    model["textures"]["layer0"] = MOD_ID + ":item/discs/" + getArtistPrefix(data) + data["name"]
 
-    print(json.dumps(model, indent=4))
+    # print(json.dumps(model, indent=4))
+
+    with open(MODELS_ITEM_DISCS_DIR + getArtistPrefix(data) + NEM + getArtistName(data) + "_" + data["name"] + ITEM_DISCS_SUFFIX + JSON_SUFFIX, "w") as f:
+        json.dump(model, f, indent=2)
 
 
 
-with open("src/main/resources/data/notenoughmusic/definitions.json", "r", encoding="utf-8") as f:
-    data = json.load(f)
+with open(DEFINITIONS, "r", encoding="utf-8") as file:
+    data = json.load(file)
 
     for desc in data:
+        GenJukeboxSong(desc)
+        GenMainSounds(desc)
+        GenLang(desc)
         GenModel(desc)
-        break
+
+    with open(ASSETS_DIR + "sounds.json", "w") as sound:
+        json.dump(SOUNDS, sound, indent=2)
+
+    with open(LANG_DIR + "en_us.json", "w") as lang:
+        json.dump(LANG, lang, indent=2)
