@@ -5,6 +5,7 @@ ARTISTS = {
     "tenm" : {"name": "tenm", "prefix": "t_en_m/", "raw": "t_en_m"},
     "laudividni" : {"name": "laudividni", "prefix": "laudividni/", "raw": "laudividni"},
     "stereonyx" : {"name": "stereonyx", "prefix": "stereonyx/", "raw": "stereonyx"}
+    # add more artist here
 }
 
 MOD_ID = "notenoughmusic"

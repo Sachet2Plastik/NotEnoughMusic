@@ -1,5 +1,7 @@
 package sachet2plastik.notenoughmusic;
 
+import sachet2plastik.notenoughmusic.DiscDefinition.RawDiscDefinition;
+
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import net.minecraft.block.jukebox.JukeboxSong;
@@ -18,11 +20,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static sachet2plastik.notenoughmusic.DiscDefinition.convertRaw;
+
 public class DiscsRegistry {
     public enum Artists {
         T_EN_M("t_en_m/", "tenm"),
         LAUDIVIDNI("laudividni/", "laudividni"),
         STEREONYX("stereonyx/", "stereonyx");
+        // add new artists here
 
         private final String Prefix;
         private final String FormatedName;
@@ -59,30 +64,9 @@ public class DiscsRegistry {
         return null;
     }
 
-    public record RawDiscDefinition(
-            String name,
-            String artist,
-            Integer maxCount,
-            String rarity,
-            String description,
-            Integer comparatorOutput,
-            Float lengthInSeconds
-    ) {}
 
-    private static DiscDefinition convertRaw(RawDiscDefinition raw) {
-        return new DiscDefinition(
-                raw.name(),
-                Artists.resolveArtist(raw.artist()),
-                null,
-                null,
-                null,
-                raw.maxCount(),
-                resolveRarity(raw.rarity()),
-                raw.description(),
-                raw.comparatorOutput(),
-                raw.lengthInSeconds()
-        );
-    }
+
+
 
     public static final Map<String, DiscDefinition> DISCS = new HashMap<>();
     private static final Type DEFINITION_TYPE = new TypeToken<List<RawDiscDefinition>>() {}.getType();
@@ -124,8 +108,9 @@ public class DiscsRegistry {
 
         for (RawDiscDefinition dd : PARSED_DISCS) {
             DISCS.put(dd.name(), convertRaw(dd));
-
-            /*
+            /*if (dd.loots() != null) {
+                System.out.println("Target:" + dd.loots().getFirst().target() + "\nType: " + dd.loots().getFirst().conditions().getFirst().type());
+            }*//*
             System.out.println(
                     "Name: " +  dd.name() + "\n" +
                     "Artist: " + dd.artist() + "\n"+

@@ -20,6 +20,9 @@
 		],
 		"client": [
 			"sachet2plastik.notenoughmusic.NotEnoughMusicClient"
+		],
+		"fabric-datagen": [
+			"sachet2plastik.notenoughmusic.client.NotEnoughMusicDataGen"
 		]
 	},
 	"mixins": [

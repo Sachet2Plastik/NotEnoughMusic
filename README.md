@@ -69,5 +69,15 @@ Any contributions are welcome given a proper PR or Issue detailing the changes.
 
 To work on the project, you can download the repo and setup you environment by following the fabric documentation.
 
-For adding discs you just need to add an entry in the [definitions.json](src/main/resources/data/notenoughmusic/definitions.json) and run the [AutoGen.py](AutoGen.py) script.
-I think that the correct directories need to be created beforehand. And make sure to add a new Artist entry too if it comes from a new artist 
+For adding discs you need to do a few things:
+- First, you need the item texture and the actual song file (.ogg)
+- Place them in their respective folder, [discs](src/main/resources/assets/notenoughmusic/textures/item/discs) and [musics](src/main/resources/assets/notenoughmusic/sounds/musics)
+>[!important]
+> The file name is important, you need to name them the same as in the [definitions.json](src/main/resources/data/notenoughmusic/definitions.json) "name" entry.
+
+- Add an entry in the [definitions.json](src/main/resources/data/notenoughmusic/definitions.json)
+>[!note]
+> If you add a new artist, you will need to add the new artist in [DiscsRegistry.java](src/main/java/sachet2plastik/notenoughmusic/DiscsRegistry.java) and in the [AutoGen.py](AutoGen.py) script.
+> Don't forget to create the corresponding directories too as the generation script need them (the final files do not need to exist just the path need exist)
+
+- Finally, run the [AutoGen.py](AutoGen.py) script. This will generate the required data file automatically.

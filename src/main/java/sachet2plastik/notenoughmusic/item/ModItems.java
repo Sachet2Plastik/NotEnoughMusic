@@ -12,10 +12,14 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
+import sachet2plastik.notenoughmusic.DiscDefinition;
 import sachet2plastik.notenoughmusic.DiscsRegistry;
 import sachet2plastik.notenoughmusic.NotEnoughMusic;
 import sachet2plastik.notenoughmusic.sound.ModSound;
 import sachet2plastik.notenoughmusic.DiscsRegistry.Artists;
+
+import java.util.Comparator;
+import java.util.Map;
 
 
 public class ModItems {
@@ -60,9 +64,14 @@ public class ModItems {
         ItemGroupEvents.modifyEntriesEvent(CUSTOM_CREATIVE_TAB_KEY).register(entries -> {
             entries.add(TEST_MUSIC_DISC);
 
-            DiscsRegistry.DISCS.forEach(((name, definition) -> {
-                entries.add(definition.Item);
-            }));
+            DiscsRegistry.DISCS.entrySet().stream()
+                .sorted(Comparator.comparing((Map.Entry<String, DiscDefinition> e) -> e.getValue().Artist.Name())
+                .thenComparing(e -> e.getValue().Name))
+                .forEach(entry -> {
+                    DiscDefinition def = entry.getValue();
+
+                    entries.add(def.Item);
+                });
         });
     }
 

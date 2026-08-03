@@ -5,6 +5,7 @@ import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sachet2plastik.notenoughmusic.item.ModItems;
+import sachet2plastik.notenoughmusic.loottable.ModLootTables;
 import sachet2plastik.notenoughmusic.sound.ModSound;
 
 public class NotEnoughMusic implements ModInitializer {
@@ -27,5 +28,6 @@ public class NotEnoughMusic implements ModInitializer {
 		DiscsRegistry.registerDiscFromConfig();
 		ModSound.registerSounds();
 		ModItems.registerModItems();
+		ModLootTables.registerLootTables();
 	}
 }
