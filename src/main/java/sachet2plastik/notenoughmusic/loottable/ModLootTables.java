@@ -9,6 +9,7 @@ import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.util.Identifier;
 import sachet2plastik.notenoughmusic.DiscsRegistry;
 import sachet2plastik.notenoughmusic.loottable.conditiondata.ConditionDataConverter;
+import sachet2plastik.notenoughmusic.loottable.conditiondata.IConditionData;
 
 public class ModLootTables {
     public static void registerLootTables() {
@@ -26,7 +27,7 @@ public class ModLootTables {
                                 .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(lootDefinition.CountMin, lootDefinition.CountMax)));
 
                                 lootDefinition.Conditions.forEach((condition -> {
-                                    poolBuilder.conditionally(condition.convert(new ConditionDataConverter()));
+                                    poolBuilder.conditionally(condition.convert(new ConditionDataConverter(), new IConditionData.ConditionContext(key, tableBuilder, source, registries)));
                                 }));
                                 poolBuilder.build();
 

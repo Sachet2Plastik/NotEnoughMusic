@@ -7,10 +7,8 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Rarity;
 
 import sachet2plastik.notenoughmusic.DiscsRegistry.Artists;
-import sachet2plastik.notenoughmusic.loottable.conditiondata.IConditionData;
+import sachet2plastik.notenoughmusic.loottable.conditiondata.*;
 import sachet2plastik.notenoughmusic.loottable.LootDefinition;
-import sachet2plastik.notenoughmusic.loottable.conditiondata.KilledByPlayerConditionData;
-import sachet2plastik.notenoughmusic.loottable.conditiondata.RandomChanceConditionData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,8 +44,26 @@ public class DiscDefinition {
 
     public record RawCondition(
             String type,
-            Float chance
-    ) {}
+            Float chance,
+            String enchant,
+            Float base,
+            Float perLevel,
+            String item,
+            String tag,
+            String killer,
+            Boolean direct,
+            List<String> biomes,
+            Boolean canSee,
+            Integer min,
+            Integer max,
+            Integer exactly
+    ) {
+        public RawCondition {
+            if (min == null) min = -1;
+            if (max == null) max = -1;
+            if (exactly == null) exactly = -1;
+        }
+    }
 
     public record RawCount(
             Integer min,
@@ -89,24 +105,34 @@ public class DiscDefinition {
     }
 
     private static IConditionData buildConditionData(RawCondition data) {
-        switch (data.type()) {
-            case "random_chance":
-                return new RandomChanceConditionData(data.chance());
-            case "killed_by_player":
-                return new KilledByPlayerConditionData();
-        }
-        return null;
+        return switch (data.type()) {
+            case "random_chance" -> new RandomChanceConditionData(data.chance());
+            case "random_chance_enchantments" -> new RandomChancesEnchantmentConditionData(data.enchant(), data.base(), data.perLevel());
+            case "killed_by_player" -> new KilledByPlayerConditionData();
+            case "killed_with_item" -> new KilledWithItemConditionData(data.item());
+            case "killed_with_item_tag" -> new KilledWithItemTagConditionData(data.tag());
+            case "killed_by" -> new KilledByConditionData(data.killer(), data.direct());
+            case "biomes" -> new BiomesConditionData(data.biomes());
+            case "sky" -> new SkyConditionData(data.canSee());
+            case "light" -> new LightConditionData(data.min(), data.max(), data.exactly());
+            case "survive_explosion" -> new SurviveExplosionConditionData();
+            default -> null;
+        };
     }
 
     private static String DebugBuildString(String buff, RawCondition data) {
-        switch (data.type()) {
-            case "random_chance":
-                return buff.concat("{ Type: " + data.type() + ", Chance: " + data.chance() + " },\n");
-            case "killed_by_player":
-                return buff.concat("{ Type: " + data.type() + " },\n");
-                default:
-                return buff.concat("{condition not implemented yet}\n");
-        }
+        return switch (data.type()) {
+            case "random_chance" -> buff.concat("{ Type: " + data.type() + ", Chance: " + data.chance() + " },\n");
+            case "random_chance_enchantments" -> buff.concat("{ Type: " + data.type() + ", Target Enchant: " + data.enchant() + ", Base Chance: " + data.base() + ", Per Level Increase: " + data.perLevel() + " },\n");
+            case "killed_by_player", "survive_explosion" -> buff.concat("{ Type: " + data.type() + " },\n");
+            case "killed_with_item" -> buff.concat("{ Type: " + data.type() + ", Item to kill with: " + data.item() + " },\n");
+            case "killed_with_item_tag" -> buff.concat("{ Type: " + data.type() + ", Item Tag to kill with: " + data.tag() + " },\n");
+            case "killed_by" -> buff.concat("{ Type: " + data.type() + ", killer: " + data.killer() + ", direct: " + data.direct() + " },\n");
+            case "biomes" -> buff.concat("{ Type: " + data.type() + ", Biomes: " + data.biomes() + " },\n");
+            case "sky" -> buff.concat("{ Type: " + data.type() + ", Can See The Sky: " + data.canSee() + " },\n");
+            case "light" -> buff.concat("{ Type: " + data.type() + ", Min: " + data.min() + ", Max: " + data.max() + "Exactly: " + data.exactly() + " },\n");
+            default -> buff.concat("{condition not implemented yet}\n");
+        };
     }
 
     private static List<LootDefinition> convertRawLoots(List<RawLoot> raw) {
@@ -117,7 +143,7 @@ public class DiscDefinition {
 
         for (RawLoot loot : raw) {
             LootDefinition toAdd = new LootDefinition();
-            toAdd.Target = loot.target;
+            toAdd.Target = loot.target();
             String buff = "";
             buff = buff.concat("Target: " + toAdd.Target + "\nConditions: [\n");
             toAdd.Conditions = new ArrayList<>(List.of());
@@ -127,7 +153,7 @@ public class DiscDefinition {
             }
             toAdd.CountMin = loot.count().min();
             toAdd.CountMax = loot.count().max();
-            toAdd.Rolls = loot.rolls;
+            toAdd.Rolls = loot.rolls();
             buff = buff.concat("]\nCount: [" + toAdd.CountMin + " ; " + toAdd.CountMax + "], Rolls: " + toAdd.Rolls + "\n");
             System.out.println(buff);
             lootDefinitions.addLast(toAdd);

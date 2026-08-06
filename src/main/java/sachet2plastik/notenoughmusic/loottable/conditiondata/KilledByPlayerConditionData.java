@@ -8,7 +8,7 @@ public class KilledByPlayerConditionData implements IConditionData {
     }
 
     @Override
-    public LootCondition.Builder convert(ConditionDataConverter dataConverter) {
+    public LootCondition.Builder convert(ConditionDataConverter dataConverter, ConditionContext ctx) {
         return dataConverter.buildFromData(this);
     }
 

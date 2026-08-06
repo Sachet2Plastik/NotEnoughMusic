@@ -43,7 +43,7 @@ More artists may be added in future updates.
 | Thunder Storm    | @[TenM](https://www.youtube.com/@TenM)                                                             | [YouTube](https://youtu.be/ErdGLNNcc-0?si=7cQ-qenXuFV7_0lJ)  |
 | 1k Special       | @[TenM](https://www.youtube.com/@TenM)                                                             | [YouTube](https://youtu.be/R8lm_xkyOwQ?si=h1xZ4tZBEzxottxG)  |
 |                  |                                                                                                    |                                                              |
-| Nightfall        | @[Laudividni](https://www.youtube.com/@LaudividniMusic)                                            | [YouTube](https://www.youtube.com/watch?v=SrNlvy3vrQ8)       |                                          |
+| Nightfall        | @[Laudividni](https://www.youtube.com/@LaudividniMusic)                                            | [YouTube](https://www.youtube.com/watch?v=SrNlvy3vrQ8)       |
 |                  |                                                                                                    |                                                              |
 | Dragon Fight     | @[Stereonyx](https://www.youtube.com/@Stereonyx)                                                   | [YouTube](https://www.youtube.com/watch?v=2ZmbXM8OAXM)       |
 
@@ -81,3 +81,317 @@ For adding discs you need to do a few things:
 > Don't forget to create the corresponding directories too as the generation script need them (the final files do not need to exist just the path need exist)
 
 - Finally, run the [AutoGen.py](AutoGen.py) script. This will generate the required data file automatically.
+
+
+## Loot Tables
+
+Discs can be added to vanilla loot table (only vanilla one for now).
+Just like the definition of the disc song and item the looting definition is also defined in the [definitions.json](src/main/resources/data/notenoughmusic/definitions.json) file,
+in a "loots" list (a disc can be lootable from multiple sources)
+
+Here the list of available conditions:
+
+> [!note]
+> This is not a one to one representation of the existing minecraft conditions, it is intentional.
+> This structure is made to be maybe more restrictive but easier to read and add simple and specific conditions.
+
+> [!important]
+> You can only add new pool to existing loot tables, and cannot replace or edit already existing pool.
+For now, it doesn't feel relevant as the goal is to add collectible to mostly vanilla gameplay.
+
+### Random chance
+
+A condition that drop the item based on a given chance.
+
+Type: random_chance
+
+#### Arguments
+
+| Name   | Type  |
+|--------|-------|
+| chance | Float |
+
+
+#### Usage
+```json
+{
+    "type": "random_chance",
+    "chance": 0.25
+}
+```
+Here a chance of 25% for the item to drop.
+
+> [!note]
+> This is a fixed chance, not affected by any enchantments. (look )
+---
+
+### Random chance with Enchantments
+
+A condition that drop the item based on a given chance, affected by bonus enchantments.
+
+Type: random_chance_enchantment
+
+#### Arguments
+
+| Name     | Type   |
+|----------|--------|
+| enchant  | String |
+| base     | Float  |
+| perLevel | Float  |
+
+
+#### Usage
+```json
+{
+    "type": "random_chance_enchantments",
+    "enchant": "minecraft:sharpness",
+    "base": 0.2,
+    "perLevel": 0.2
+}
+```
+Here a chance of 20% for the item to drop and a bonus chance that increase by 20% per level of enchantment of sharpness.
+
+### Killed By Player
+
+A condition that drop the item only when the target entity is killed by a player.
+
+Type: killed_by_player
+
+#### Arguments
+
+No arguments
+
+#### Usage
+```json
+{
+    "type": "killed_by_player"
+}
+```
+
+---
+
+### Killed By
+
+A condition that drop the item only when the target entity is killed by a specific entity.
+
+Type: killed_by
+
+#### Arguments
+
+| Name   | Type   |
+|--------|--------|
+| killer | String |
+
+
+#### Usage
+```json
+{
+    "type": "killed_by",
+    "killer": "minecraft:creeper"
+}
+```
+Here the target need to be killed by a creeper.
+
+---
+
+### Killed Using Item
+
+A condition that drop the item only when the target entity is killed with a specific item.
+
+Type: killed_with_item
+
+#### Arguments
+
+| Name | Type   |
+|------|--------|
+| item | String |
+
+#### Usage
+```json
+{
+    "type": "killed_with_item",
+    "item": "minecraft:diamond_sword"
+}
+```
+Here the target need to be killed with a diamond sword (only check in the mainhand slot).
+
+---
+
+### Killed Using Item Tag
+
+Similar to the one above but instead of a specific item, will look at the item tag.
+
+Type: killed_with_item_tag
+
+#### Arguments
+
+| Name | Type   |
+|------|--------|
+| tag  | String |
+
+#### Usage
+```json
+{
+    "type": "killed_with_item_tag",
+    "tag": "minecraft:swords"
+}
+```
+Here the target need to be killed with any item tagged with 'swords'.
+
+---
+
+### Biomes
+
+A condition that check the current biome.
+
+Type: biomes
+
+#### Arguments
+
+| Name                       | Type                    |
+|----------------------------|-------------------------|
+| biomes                     | [ String ]              |
+
+#### Usage
+```json
+{
+    "type": "biomes",
+    "biomes": [
+      "minecraft:badlands"
+    ]
+}
+```
+
+---
+
+### Can See The Sky
+
+A condition that check if direct line of sight to the sky.
+
+Type: sky
+
+#### Arguments
+
+| Name   | Type    |
+|--------|---------|
+| canSee | Boolean |
+
+#### Usage
+```json
+{
+    "type": "sky",
+    "canSee": true
+}
+```
+
+---
+
+### Light
+
+A condition that check the light level.
+
+Type: light
+
+#### Arguments
+
+| Name    | Type    |
+|---------|---------|
+| min     | Integer |
+| max     | Integer |
+| exactly | Integer |
+
+> [!note]
+> depending on which argument you use, the condition would change.
+> Only using "min" will use the "atLeast" condition, only "max" is "atMost", together it is "between" and exactly is "exactly"
+
+#### Usage
+```json
+{
+    "type": "light",
+    "exactly": 5
+}
+```
+
+
+---
+| dimension                  | String                  |
+| structures                 | [ String ]              |
+| height                     | Float                   |
+
+
+**LocationType** (String): biomes, sky, dimension, structures, height, light, blocks, fluid<br>
+**LightType** (String): atLeast, atMost, between, exactly
+
+---
+
+### Weather Condition (todo)
+
+A condition that check the current weather condition.
+
+Type: weather
+
+#### Arguments
+
+| Name    | Type   |
+|---------|--------|
+| weather | String |
+
+only "rain" and "thundering" is available
+
+#### Usage
+```json
+{
+    "type": "weather",
+    "weather": "rain"
+}
+```
+Here check if it rains
+
+---
+
+### Equipment condition (todo)
+
+Similar to the "killed by" and "killed with" but with more freedom allowing more complex conditions
+
+Type: entity_equipment
+
+#### Arguments
+
+| Name   | Type           |
+|--------|----------------|
+| target | **TargetType** |
+| slot   | **SlotType**   |
+| item   | String         |
+
+**TargetType** (String): this, attacker, direct_attacker, attacking_player<br>
+**SlotType** (String): head, chest, legs, feet, body, mainhand, offhand
+
+#### Usage
+```json
+{
+    "type": "entity_equipement",
+    "target": "attacker",
+    "slot": "head",
+    "item": "minecraft:iron_helmet"
+}
+```
+Here we check if the attacker has an iron helmet equipped on the head slot
+
+---
+
+### Survive Explosion
+
+A condition that drop the item if the block survive the explosion
+
+Type: survive_explosion
+
+#### Arguments
+
+No arguments
+
+#### Usage
+```json
+{
+    "type": "survive_explosion"
+}
+```
